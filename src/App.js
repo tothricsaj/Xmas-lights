@@ -7,12 +7,14 @@ class App extends React.Component {
     super(props)
 
     this.lightInterval = null
+    this.lbOpacity = 0.2
+    this.changeingValue = 0.1
 
     this.timer = this.timer.bind(this)
   }
 
   componentDidMount() {
-    this.lightInterval = setInterval(this.timer, 1000)
+    this.lightInterval = setInterval(this.timer, 100)
   }
 
   componentWillUnmount() {
@@ -20,7 +22,13 @@ class App extends React.Component {
   }
 
   timer() {
-    console.log(Math.floor(Math.random() * 3))
+    if(this.lbOpacity >= 1.2 || this.lbOpacity <= 0.1) {
+      this.changeingValue *= -1
+    }
+
+    this.lbOpacity += this.changeingValue
+    
+    document.querySelector('#bubble-0').style.opacity = this.lbOpacity
   }
 
   render() {
