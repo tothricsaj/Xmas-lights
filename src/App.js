@@ -12,7 +12,12 @@ class App extends React.Component {
       '(257, 59%, 62%, 1)',
       '(137, 72%, 70%, 1)'
     ].map((el, i) => {
-      return (<li className='lightBubble' key={i} style={{backgroundColor: `hsla${el}`}}></li>)
+      let lbStyle = {
+        backgroundColor: `hsla${el}`,
+        boxShadow: `0px 0px 30px 0px hsla${el}`,
+        opacity: '.2'
+      }
+      return (<li className='lightBubble' key={i} style={lbStyle}></li>)
     })
     return (
       <div className="App">
