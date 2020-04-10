@@ -26,6 +26,9 @@ class App extends React.Component {
   }
 
   timer() {
+    let downElem = document.querySelector(`#bubble-${this.downLight}`)
+    let upElem = document.querySelector(`#bubble-${this.upLight}`)
+
     if(this.lbUpOpacity >= 1.2 || this.lbUpOpacity <= 0.1) {
       this.changeingValueUp *= -1
     }
@@ -37,8 +40,8 @@ class App extends React.Component {
     this.lbUpOpacity += this.changeingValueUp
     this.lbDownOpacity += this.changeingValueDown
     
-    document.querySelector(`#bubble-${this.downLight}`).style.opacity = this.lbDownOpacity
-    document.querySelector(`#bubble-${this.upLight}`).style.opacity = this.lbUpOpacity
+    downElem.style.opacity = this.lbDownOpacity
+    upElem.style.opacity = this.lbUpOpacity
 
     // if(this.upLight >= 5) {
     //   this.upLight = 0
