@@ -7,14 +7,18 @@ class App extends React.Component {
     super(props)
 
     this.lightInterval = null
-    this.lbOpacity = 0.2
-    this.changeingValue = 0.1
+    this.lbUpOpacity = 0.2
+    this.lbDownOpacity = 1.2
+    this.changeingValueUp = 0.1
+    this.changeingValueDown = 0.1
+    this.upLight = 2
+    this.downLight = 1
 
     this.timer = this.timer.bind(this)
   }
 
   componentDidMount() {
-    this.lightInterval = setInterval(this.timer, 100)
+    this.lightInterval = setInterval(this.timer, 1000)
   }
 
   componentWillUnmount() {
@@ -22,13 +26,31 @@ class App extends React.Component {
   }
 
   timer() {
-    if(this.lbOpacity >= 1.2 || this.lbOpacity <= 0.1) {
-      this.changeingValue *= -1
+    if(this.lbUpOpacity >= 1.2 || this.lbUpOpacity <= 0.1) {
+      this.changeingValueUp *= -1
     }
 
-    this.lbOpacity += this.changeingValue
+    if(this.lbDownOpacity >= 1.2 || this.lbDownOpacity <= 0.1) {
+      this.changeingValueDown *= -1
+    }
+
+    this.lbUpOpacity += this.changeingValueUp
+    this.lbDownOpacity += this.changeingValueDown
     
-    document.querySelector('#bubble-0').style.opacity = this.lbOpacity
+    document.querySelector(`#bubble-${this.downLight}`).style.opacity = this.lbDownOpacity
+    document.querySelector(`#bubble-${this.upLight}`).style.opacity = this.lbUpOpacity
+
+    if(this.upLight === 5) {
+      this.upLight = 0
+    } else {
+      this.upLight++
+    }
+
+    if(this.downLight === 5) {
+      this.downLight = 0
+    } else {
+      this.downLight++
+    }
   }
 
   render() {
