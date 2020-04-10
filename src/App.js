@@ -29,19 +29,23 @@ class App extends React.Component {
     let downElem = document.querySelector(`#bubble-${this.downLight}`)
     let upElem = document.querySelector(`#bubble-${this.upLight}`)
 
-    if(this.lbUpOpacity >= 1.2 || this.lbUpOpacity <= 0.1) {
+    let downElOpacity = parseInt(downElem.style.opacity)
+    let upElOpacity = parseInt(upElem.style.opacity)
+
+
+    if( upElOpacity >= 1.2 || upElOpacity <= 0.1) {
       this.changeingValueUp *= -1
     }
 
-    if(this.lbDownOpacity >= 1.2 || this.lbDownOpacity <= 0.1) {
+    if(downElOpacity >= 1.2 || downElOpacity <= 0.1) {
       this.changeingValueDown *= -1
     }
 
-    this.lbUpOpacity += this.changeingValueUp
-    this.lbDownOpacity += this.changeingValueDown
-    
-    downElem.style.opacity = this.lbDownOpacity
-    upElem.style.opacity = this.lbUpOpacity
+    downElOpacity += this.changeingValueDown
+    upElOpacity += this.changeingValueUp
+
+    downElem.style.opacity += downElOpacity
+    upElem.style.opacity += upElOpacity
 
     // if(this.upLight >= 5) {
     //   this.upLight = 0
