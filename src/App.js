@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.lightInterval = setInterval(this.timer, 1000)
+    this.lightInterval = setInterval(this.timer, 100)
   }
 
   componentWillUnmount() {
@@ -40,17 +40,17 @@ class App extends React.Component {
     document.querySelector(`#bubble-${this.downLight}`).style.opacity = this.lbDownOpacity
     document.querySelector(`#bubble-${this.upLight}`).style.opacity = this.lbUpOpacity
 
-    if(this.upLight === 5) {
-      this.upLight = 0
-    } else {
-      this.upLight++
-    }
+    // if(this.upLight >= 5) {
+    //   this.upLight = 0
+    // } else {
+    //   this.upLight++
+    // }
 
-    if(this.downLight === 5) {
-      this.downLight = 0
-    } else {
-      this.downLight++
-    }
+    // if(this.downLight === 5) {
+    //   this.downLight = 0
+    // } else {
+    //   this.downLight++
+    // }
   }
 
   render() {
